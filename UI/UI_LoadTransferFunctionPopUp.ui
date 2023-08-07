@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LoadTransferFunctionPopUp</class>
+ <widget class="QDialog" name="LoadTransferFunctionPopUp">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>425</width>
+    <height>539</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Agregar Transferencia</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="9" column="0">
+    <widget class="QLabel" name="MarkerLabel">
+     <property name="text">
+      <string>Marcadores</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2" colspan="2">
+    <widget class="QDoubleSpinBox" name="StopDSB">
+     <property name="minimum">
+      <double>0.010000000000000</double>
+     </property>
+     <property name="maximum">
+      <double>99999999999999991433150857216.000000000000000</double>
+     </property>
+    </widget>
+   </item>
+   <item row="12" column="2" colspan="2">
+    <widget class="QDialogButtonBox" name="TransferFunctionButtonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="4">
+    <widget class="QComboBox" name="StartFreqMultCB"/>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="StartFreqLabel">
+     <property name="text">
+      <string>Frec. inicial</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="5">
+    <widget class="QGroupBox" name="TexGroupBox">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>175</height>
+      </size>
+     </property>
+     <property name="title">
+      <string>Interpretado como</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2"/>
+    </widget>
+   </item>
+   <item row="7" column="0" colspan="2">
+    <widget class="QLabel" name="LineTypeLabel">
+     <property name="text">
+      <string>Tipo de linea</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="4">
+    <widget class="QComboBox" name="StopFreqMultCB"/>
+   </item>
+   <item row="7" column="2" colspan="3">
+    <widget class="QComboBox" name="LineTypeCB"/>
+   </item>
+   <item row="8" column="0" colspan="2">
+    <widget class="QLabel" name="ColorLabel">
+     <property name="text">
+      <string>Color</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel" name="StopFreqLabel">
+     <property name="text">
+      <string>Frec. final</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="2" colspan="3">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="ColorButton">
+       <property name="minimumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="4">
+    <widget class="QPushButton" name="CheckButton">
+     <property name="text">
+      <string>Check</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>H(s)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1" colspan="3">
+    <widget class="QLineEdit" name="TransferFunctionLineEdit"/>
+   </item>
+   <item row="3" column="2" colspan="2">
+    <widget class="QDoubleSpinBox" name="StartDSB">
+     <property name="minimum">
+      <double>0.010000000000000</double>
+     </property>
+     <property name="maximum">
+      <double>99999999999999991433150857216.000000000000000</double>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="0" rowspan="2">
+    <widget class="QLabel" name="TraceNameLabel">
+     <property name="text">
+      <string>Nombre de linea</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="2" colspan="3">
+    <widget class="QComboBox" name="MarkersCB"/>
+   </item>
+   <item row="10" column="2" rowspan="2" colspan="3">
+    <widget class="QLineEdit" name="TraceNameLE"/>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>TransferFunctionButtonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>LoadTransferFunctionPopUp</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>325</x>
+     <y>532</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>186</x>
+     <y>356</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>TransferFunctionButtonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>LoadTransferFunctionPopUp</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>325</x>
+     <y>532</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>136</x>
+     <y>363</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CheckButton</sender>
+   <signal>clicked()</signal>
+   <receiver>LoadTransferFunctionPopUp</receiver>
+   <slot>updateTransferFunction()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>378</x>
+     <y>39</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>TransferFunctionLineEdit</sender>
+   <signal>textEdited(QString)</signal>
+   <receiver>LoadTransferFunctionPopUp</receiver>
+   <slot>textChange(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>154</x>
+     <y>32</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>4</x>
+     <y>52</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ColorButton</sender>
+   <signal>clicked()</signal>
+   <receiver>LoadTransferFunctionPopUp</receiver>
+   <slot>ChooseColor()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>299</x>
+     <y>373</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>211</x>
+     <y>318</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>updateTransferFunction()</slot>
+  <slot>textChange(QString)</slot>
+  <slot>ChooseColor()</slot>
+ </slots>
+</ui>
