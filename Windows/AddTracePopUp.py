@@ -123,6 +123,19 @@ class AddTracePopUp(QtWidgets.QDialog, UI_AddTracePopUp.Ui_AddTracePopUp):
             self.Dir2FileLE.setText(file_path)
             if "csv" in file_path[-3:]:
                 self.reader = CSVDataReader(file_path)
+                # check line 1 for specific header (open it as a text file)
+                with open(file_path, 'r') as f:
+                    line0 = f.readline()
+                    line1 = f.readline()
+
+                    data = [line0.strip().split(','), line1.strip().split(',')]
+                    df = pd.DataFrame(data, columns=None)
+                    print("DEBUG")
+                    print(df.head())
+                    
+                    print(df["Start"][0], df["Increment"][0])
+                    
+
             elif "raw" in file_path[-3:]:
                 self.reader = SpiceDataReader(file_path)
 
