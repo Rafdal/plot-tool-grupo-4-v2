@@ -112,6 +112,23 @@ class AddTracePopUp(QtWidgets.QDialog, UI_AddTracePopUp.Ui_AddTracePopUp):
         if event.mimeData().hasUrls():
             event.acceptProposedAction()
 
+    def detectRIGOL(self, reader, file_path):
+        # check line 1 for specific header (open it as a text file)
+        with open(file_path, 'r') as f:
+            line0 = f.readline()
+            line1 = f.readline()
+
+            if "Sequence" in line1:
+                data = [line1.strip().split(',')]
+                df = pd.DataFrame(data, columns=[line0.strip().split(',')])
+                
+                start = float(df['Start'].iloc[0])
+                increment = float(df['Increment'].iloc[0])
+
+                self.reader.xoperation = lambda x: x * increment + start
+                self.XOpLE.setText(f"x * {increment} + {start}")
+                self.SignalRadioButton.setChecked(True)
+
     def dropEvent(self, event):
         if event.mimeData().hasUrls():
             url = event.mimeData().urls()[0]  # Get the first URL (file path)
@@ -123,18 +140,9 @@ class AddTracePopUp(QtWidgets.QDialog, UI_AddTracePopUp.Ui_AddTracePopUp):
             self.Dir2FileLE.setText(file_path)
             if "csv" in file_path[-3:]:
                 self.reader = CSVDataReader(file_path)
-                # check line 1 for specific header (open it as a text file)
-                with open(file_path, 'r') as f:
-                    line0 = f.readline()
-                    line1 = f.readline()
-
-                    data = [line0.strip().split(','), line1.strip().split(',')]
-                    df = pd.DataFrame(data, columns=None)
-                    print("DEBUG")
-                    print(df.head())
-                    
-                    print(df["Start"][0], df["Increment"][0])
-                    
+                
+                # check if it is a RIGOL file
+                self.detectRIGOL(self.reader, file_path)
 
             elif "raw" in file_path[-3:]:
                 self.reader = SpiceDataReader(file_path)
@@ -289,6 +297,10 @@ class AddTracePopUp(QtWidgets.QDialog, UI_AddTracePopUp.Ui_AddTracePopUp):
         self.Dir2FileLE.setText(path2file[0])
         if "csv" in path2file[1]:
             self.reader = CSVDataReader(path2file[0])
+
+            # detect RIGOL
+            self.detectRIGOL(self.reader, path2file[0] + path2file[1])
+
         elif "raw" in path2file[1]:
             self.reader = SpiceDataReader(path2file[0])
 

@@ -45,6 +45,9 @@ class CSVDataReader(DataReader):
             resultDF[self.xcolumn] = resultDF[self.xcolumn].apply(self.xoperation)
             resultDF[self.ycolumn] = resultDF[self.ycolumn].apply(self.yoperation)
 
+            logging.debug(type(self.xoperation))
+            logging.debug(self.xoperation)
+
             # ! ACA FILTRO
             # smooth y data with a moving average
             resultDF[self.ycolumn] = resultDF[self.ycolumn].rolling(window=self.filterCoeff).mean()
